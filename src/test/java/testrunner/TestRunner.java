@@ -23,7 +23,10 @@ import static org.hamcrest.Matchers.*;
 
 public class TestRunner extends Hooks { //reports: allure serve C:\Users\jcastillo\Documents\Challenges\UI-Challenge\allure-results
     private final String USER_PATH = "testdata/usercredentials.yaml";
+    private final String FC_MOVIE_PATH = "testdata/figthclubmovie.yaml";
+    private static final String ACTION_GENRE_PATH = "testdata/actiongenre.yaml";
     private static final String MOVIES_W_ACTORS = "testdata/movieswithactors.yaml";
+
     private static final Logger logger = LogManager.getLogger(TestRunner.class);
 
     @Test(priority = 3)
@@ -67,7 +70,6 @@ public class TestRunner extends Hooks { //reports: allure serve C:\Users\jcastil
     @Severity(SeverityLevel.NORMAL)
     public void UICT03() throws IOException {
         logger.info("- - - - - - START TEST CASE UICT03 - - - - - -");
-        String FC_MOVIE_PATH = "testdata/figthclubmovie.yaml";
         Movie someMovie = parseMovieYAML(FC_MOVIE_PATH);
         MainPage mainPage = new MainPage(driver);
         String firstResultName = mainPage.searchMovie(someMovie)
@@ -93,7 +95,6 @@ public class TestRunner extends Hooks { //reports: allure serve C:\Users\jcastil
     @Severity(SeverityLevel.NORMAL)
     public void UICT04(int idx) throws IOException{
         logger.info("- - - - - - START TEST CASE UICT04-"+(idx+1)+" - - - - - -");
-        String ACTION_GENRE_PATH = "testdata/ctiongenre.yaml";
         Genre actionGenre = parseGenreYAML(ACTION_GENRE_PATH);
         MainPage mainPage = new MainPage(driver);
         String genresObtained = mainPage.goToTopRated()
