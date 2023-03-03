@@ -31,7 +31,6 @@ public class LoginPage extends BasePage {
         mapToElement(loginButtonBy).click();
         return new UserPage(driver);
     }
-
     public LoginPage failedLogin(User someUser){
         logger.info("Typing valid username and invalid password...");
         wait.until(ExpectedConditions.presenceOfElementLocated(inputUsernameBy));
@@ -44,11 +43,19 @@ public class LoginPage extends BasePage {
         return this;
     }
     public boolean hasRedError(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(redErrorMessageBy));
-        return driver.findElement(redErrorMessageBy).isDisplayed();
+        try{
+            wait.until(ExpectedConditions.presenceOfElementLocated(redErrorMessageBy));
+            return true;
+        }catch(Exception TimeoutException){
+            return false;
+        }
     }
     public boolean hasTwoErrors(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(listErrMessagesBy));
-        return  driver.findElements(listErrMessagesBy).size() == 2;
+        try{
+            wait.until(ExpectedConditions.presenceOfElementLocated(listErrMessagesBy));
+            return driver.findElements(listErrMessagesBy).size() == 2;
+        }catch(Exception TimeoutException){
+            return false;
+        }
     }
 }
