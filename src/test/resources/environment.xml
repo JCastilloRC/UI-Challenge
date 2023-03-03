@@ -1,0 +1,10 @@
+<environment>
+    <parameter>
+        <key>Browser</key>
+        <value>Chrome</value>
+    </parameter>
+    <parameter>
+        <key>Browser.Version</key>
+        <value>Version 110.0.5481.178 (Official Build) (64-bit)</value>
+    </parameter>
+</environment>

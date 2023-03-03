@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="UI Challenge Test Suite" >
+    <test name="UI Challenge Test" >
+        <classes>
+            <class name="testrunner.TestRunner" />
+        </classes>
+    </test>
+</suite>
