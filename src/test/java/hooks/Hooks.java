@@ -1,27 +1,29 @@
 package hooks;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
+import drivermanager.DriverManager;
+import drivermanager.DriverManagerFactory;
+import drivermanager.DriverType;
+import org.slf4j.MDC;
+import org.testng.annotations.*;
 
 public class Hooks {
-    protected WebDriver driver = new ChromeDriver();
-    @BeforeMethod
-    public void setUp(){
-        driver.manage()
-                .window()
-                .maximize();
-        driver.navigate()
-                .to("https://www.themoviedb.org/");
+    protected DriverManager driverManager;
+    @Parameters("DriverType")
+    @BeforeTest()
+    public void setUp(DriverType type){
+        driverManager = DriverManagerFactory.getManager(type);
+    }
+    @BeforeMethod()
+    public void testCaseInit(){
+        MDC.put("threadName", Thread.currentThread().getName());
+        driverManager.initTest();
     }
     @AfterMethod
     public void resetSession(){
-        driver.manage().deleteAllCookies();
+        driverManager.deleteCookies();
     }
     @AfterTest
     public void tearDown(){
-        driver.close();
+        driverManager.quitDriver();
     }
 }
