@@ -1,8 +1,21 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="UI Challenge Test Suite" >
-    <test name="UI Challenge Test" >
+<suite name="UI Challenge Test Suite" thread-count="3" parallel="tests" >
+    <test name="FirefoxTest">
+        <parameter name="DriverType" value="FIREFOX"></parameter>
         <classes>
-            <class name="testrunner.TestRunner" />
+            <class name="testrunner.TestRunnerFirefox" />
+        </classes>
+    </test>
+    <test name="ChromeTest">
+        <parameter name="DriverType" value="CHROME"></parameter>
+        <classes>
+            <class name="testrunner.TestRunnerChrome" />
+        </classes>
+    </test>
+    <test name="EdgeTest">
+        <parameter name="DriverType" value="EDGE"></parameter>
+        <classes>
+            <class name="testrunner.TestRunnerEdge" />
         </classes>
     </test>
 </suite>
